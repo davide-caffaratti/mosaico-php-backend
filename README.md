@@ -2,22 +2,20 @@
 
 This is a (now working) PHP backend for Mosaico
 
-This has been forked from https://github.com/ainterpreting/mosaico-php-backend which seems to be completely dead and no-longer maintained.
+This has been forked from https://github.com/ainterpreting/mosaico-php-backend which seems to be completely dead and no-longer maintained.  I am **not** a php programmer but needed to get this working.  If anyone wants to take this over or offer any cleanup/help with the code I would more than welcome it.
 
-It has been testing with mosaico installed in /var/www/mosaico and with document root as /var/www/mosaico as well.  If your apache setup is different you will probably have to change the paths in config.php and maybe in index.php as well.
+It has been tested with mosaico installed in /var/www/mosaico and with document root as /var/www/mosaico.  If your apache setup is different you will probably have to change the paths in config.php and maybe in index.php as well.
 
 Mosaico can be found at https://github.com/voidlabs/mosaico
 
 First, install and set up Mosaico.  Then install these files on top of the Mosaico installation.
 
-Other install requirements
-
-You must also create the directories /upload, /dl, and /img in your mosaico main directory (not the backend-php directory) and add an .htaccess file to each of those directoryies with the following code:
+This install includes the directories upload, dl, and img (which should be copied into your main mosaico directory) and add an .htaccess file in each of those directories with the following code:
 ```
 RewriteEngine On
 RewriteRule ^(.*)$ /backend-php/index.php [QSA,L]
 ```
-I hope to remove this requirement soon as having to have these be actual directories is pretty stupid.
+I hope to remove these empty directories soon as having to have these be actual directories is pretty stupid.
 
 ## Dependencies
 
