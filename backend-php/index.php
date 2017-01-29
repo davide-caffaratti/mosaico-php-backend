@@ -16,9 +16,8 @@ const THUMBNAIL_WIDTH = 9;
 const THUMBNAIL_HEIGHT = 10;
 
 require "config.php";
-require "premailer.php";
 
-//die( "<pre>" . print_r( $config, true ) . "</pre>" );
+// die( "<pre>" . print_r( $config, true ) . "</pre>" );
 
 /**
  * entry point for all requests
@@ -28,16 +27,18 @@ $http_response_code = 200;
 
 $url = parse_url( $_SERVER[ "REQUEST_URI" ] );
 
+
 if ( array_key_exists( "path", $url ) )
 {
+
 	$request = substr( $url[ "path" ], strlen( dirname( $url[ "path" ] ) ) );
 	
 	//die( "<pre>" . print_r( $request, true ) . "</pre>" );
 	
 	$request_handlers = [
-		"/upload/" => "ProcessUploadRequest",
-		"/img/" => "ProcessImgRequest",
-		"/dl/" => "ProcessDlRequest"
+		"upload/" => "ProcessUploadRequest",
+		"img/" => "ProcessImgRequest",
+		"dl/" => "ProcessDlRequest"
 	];
 	
 	if ( array_key_exists( $request, $request_handlers ) )
@@ -68,12 +69,11 @@ function ProcessUploadRequest()
 
 	if ( $_SERVER[ "REQUEST_METHOD" ] == "GET" )
 	{
-		$dir = scandir( $config[ BASE_DIR ] . $config[ UPLOADS_DIR ] );
 
-		foreach ( $dir as $file_name )
+		$dir = scandir( $config[ BASE_DIR ] . $config[ UPLOADS_DIR ] );
+		foreach ( $dir as $file_name )	
 		{
 			$file_path = $config[ BASE_DIR ] . $config[ UPLOADS_DIR ] . $file_name;
-			
 			if ( is_file( $file_path ) )
 			{
 				$size = filesize( $file_path );
@@ -84,10 +84,11 @@ function ProcessUploadRequest()
 					"size" => $size
 				];
 
+
 				if ( file_exists( $config[ BASE_DIR ] . $config[ THUMBNAILS_DIR ] . $file_name ) )
 				{
 					$file[ "thumbnailUrl" ] = $config[ BASE_URL ] . $config[ THUMBNAILS_URL ] . $file_name;
-				}
+				} 
 
 				$files[] = $file;
 			}
@@ -253,27 +254,26 @@ function ProcessDlRequest()
 	global $config;
 	global $http_return_code;
 	
-	/* run this puppy through premailer */
-
-	$premailer = Premailer::html( $_POST[ "html" ], true, "hpricot", $config[ BASE_URL ] );
-
-	$html = $premailer[ "html" ];
-
+	$html = $_POST[ "html" ];
 	/* create static versions of resized images */
-	
+
+
 	$matches = [];
 
-	$num_full_pattern_matches = preg_match_all( '#<img.*?src="([^"]*?\/[^/]*\.[^"]+)#i', $html, $matches );
+	$num_full_pattern_matches = preg_match_all( '#<img.*?src="(img[^"]*)#i', $html, $matches); 
 
 	for ( $i = 0; $i < $num_full_pattern_matches; $i++ )
 	{
-		if ( stripos( $matches[ 1 ][ $i ], "/img?src=" ) !== FALSE )
+		if ( stripos( $matches[ 1 ][ $i ], "img?src=" ) !== FALSE )
 		{
 			$src_matches = [];
 
-			if ( preg_match( '#/img\?src=(.*)&amp;method=(.*)&amp;params=(.*)#i', $matches[ 1 ][ $i ], $src_matches ) !== FALSE )
+
+			if ( preg_match( '#.*src=(.*)&amp;method=(.*)&amp;params=(.*)#i', $matches[ 1 ][ $i ], $src_matches ) !== FALSE )
 			{
+
 				$file_name = urldecode( $src_matches[ 1 ] );
+
 				$file_name = substr( $file_name, strlen( $config[ BASE_URL ] . $config[ UPLOADS_URL ] ) );
 
 				$method = urldecode( $src_matches[ 2 ] );
@@ -283,16 +283,36 @@ function ProcessDlRequest()
 				$width = (int) $params[ 0 ];
 				$height = (int) $params[ 1 ];
 
+				if ( $width == 0 || $height == 0 )
+				{
+					    $image = new Imagick( $config[ BASE_DIR ] . $config[ UPLOADS_DIR ] . $file_name );
+					    $image_geometry = $image->getImageGeometry();
+					    $image_ratio =  (double) $image_geometry[ "width" ] / $image_geometry[ "height" ];
+					    if ( $width == 0 ) {
+					         $width =  $height * $image_ratio;
+ 					         $width = (int) $width;
+					    } else {
+					         $height = $width / $image_ratio;
+						 $height = (int) $height;
+					    }
+	    		        }
+
 				$static_file_name = $method . "_" . $width . "x" . $height . "_" . $file_name;
 
 				$html = str_ireplace( $matches[ 1 ][ $i ], $config[ BASE_URL ] . $config[ STATIC_URL ] . urlencode( $static_file_name ), $html );
+				$html = str_ireplace ('Unsubscribe', "match:" . $matches[ 1 ][ $i ] . "--" . $src_matches[0], $html);	
+				$html = str_ireplace( $matches[ 1 ][ $i ], $file_name, $html );
 
 				$image = ResizeImage( $file_name, $method, $width, $height );
-
 				$image->writeImage( $config[ BASE_DIR ] . $config[ STATIC_DIR ] . $static_file_name );
 			}
+
 		}
+
+
 	}
+	
+
 
 	/* perform the requested action */
 
@@ -337,6 +357,7 @@ function ProcessDlRequest()
 /**
  * function to resize images using resize or cover methods
  */
+
 function ResizeImage( $file_name, $method, $width, $height )
 {
 	global $config;
@@ -345,7 +366,7 @@ function ResizeImage( $file_name, $method, $width, $height )
 
 	if ( $method == "resize" )
 	{
-		$image->resizeImage( $width, $height, Imagick::FILTER_LANCZOS, 1.0 );
+	    $image->resizeImage( $width, $height, Imagick::FILTER_LANCZOS, 1.0 );
 	}
 	else // $method == "cover"
 	{
