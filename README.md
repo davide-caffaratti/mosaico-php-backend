@@ -42,11 +42,6 @@ This is the PHP backend engine that handles the required functions:
 
 The PHP backend also generates static resized images when downloading the HTML email or sending the test email.
 
-
 ## Modified files
 
-```
-editor.html
-```
-This example file has been slightly modified to work with the php backend. You may possibly need to configure this file as well.
-
+Editor.html no longer needs to be modified from the original mosaico one. 
