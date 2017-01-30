@@ -4,16 +4,17 @@
 
 /* configuration */
 
-const BASE_URL = 1;
-const BASE_DIR = 2;
-const UPLOADS_URL = 3;
-const UPLOADS_DIR = 4;
-const STATIC_URL = 5;
-const STATIC_DIR = 6;
-const THUMBNAILS_URL = 7;
-const THUMBNAILS_DIR = 8;
-const THUMBNAIL_WIDTH = 9;
-const THUMBNAIL_HEIGHT = 10;
+const IMAGE_URL = 1;
+const BASE_URL = 2;
+const BASE_DIR = 3;
+const UPLOADS_URL = 4;
+const UPLOADS_DIR = 5;
+const STATIC_URL = 6;
+const STATIC_DIR = 7;
+const THUMBNAILS_URL = 8;
+const THUMBNAILS_DIR = 9;
+const THUMBNAIL_WIDTH = 10;
+const THUMBNAIL_HEIGHT = 111;
 
 require "config.php";
 
@@ -255,24 +256,29 @@ function ProcessDlRequest()
 	global $http_return_code;
 	
 	$html = $_POST[ "html" ];
+
 	/* create static versions of resized images */
-
-
 	$matches = [];
 
-	$num_full_pattern_matches = preg_match_all( '#<img.*?src="(img[^"]*)#i', $html, $matches); 
+	$num_full_pattern_matches = preg_match_all( '#<img.*?src=".*(img[^"]*)#i', $html, $matches); 
 
-	for ( $i = 0; $i < $num_full_pattern_matches; $i++ )
+
+        for ( $i = 0; $i < $num_full_pattern_matches; $i++ ) 
 	{
-		if ( stripos( $matches[ 1 ][ $i ], "img?src=" ) !== FALSE )
+
+		if ( stripos( $matches[ 1 ][ $i ], "img/?src=" ) !== FALSE )
 		{
-			$src_matches = [];
+
+		        $src_matches = [];
 
 
 			if ( preg_match( '#.*src=(.*)&amp;method=(.*)&amp;params=(.*)#i', $matches[ 1 ][ $i ], $src_matches ) !== FALSE )
 			{
 
+
 				$file_name = urldecode( $src_matches[ 1 ] );
+
+
 
 				$file_name = substr( $file_name, strlen( $config[ BASE_URL ] . $config[ UPLOADS_URL ] ) );
 
@@ -282,6 +288,9 @@ function ProcessDlRequest()
 				$params = explode( ",", $params );
 				$width = (int) $params[ 0 ];
 				$height = (int) $params[ 1 ];
+
+
+
 
 				if ( $width == 0 || $height == 0 )
 				{
@@ -297,11 +306,11 @@ function ProcessDlRequest()
 					    }
 	    		        }
 
+
 				$static_file_name = $method . "_" . $width . "x" . $height . "_" . $file_name;
 
-				$html = str_ireplace( $matches[ 1 ][ $i ], $config[ BASE_URL ] . $config[ STATIC_URL ] . urlencode( $static_file_name ), $html );
-				$html = str_ireplace ('Unsubscribe', "match:" . $matches[ 1 ][ $i ] . "--" . $src_matches[0], $html);	
-				$html = str_ireplace( $matches[ 1 ][ $i ], $file_name, $html );
+				
+				$html = str_ireplace(  $config[ BASE_URL] . $matches[ 1 ][ $i ], $config[ SERVE_URL] . $config[ STATIC_URL ] . urlencode( $static_file_name ), $html );
 
 				$image = ResizeImage( $file_name, $method, $width, $height );
 				$image->writeImage( $config[ BASE_DIR ] . $config[ STATIC_DIR ] . $static_file_name );
@@ -311,6 +320,7 @@ function ProcessDlRequest()
 
 
 	}
+
 	
 
 
