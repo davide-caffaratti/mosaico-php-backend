@@ -14,7 +14,7 @@ const STATIC_DIR = 7;
 const THUMBNAILS_URL = 8;
 const THUMBNAILS_DIR = 9;
 const THUMBNAIL_WIDTH = 10;
-const THUMBNAIL_HEIGHT = 111;
+const THUMBNAIL_HEIGHT = 11;
 
 require "config.php";
 
@@ -347,7 +347,7 @@ function ProcessDlRequest()
 			$headers = array();
 
 			$headers[] = "MIME-Version: 1.0";
-			$headers[] = "Content-type: text/html; charset=iso-8859-1";
+			$headers[] = "Content-type: text/html; charset=utf-8";
 			$headers[] = "To: $to";
 			$headers[] = "Subject: $subject";
 
