@@ -7,7 +7,7 @@ $config = [
 	/* Url for image serving in final download */
 	SERVE_URL => "https://YOUR_EMAIL_IMAGE_SERVER_URL/",
 
-	/* Base Url for accessing Mosaco */
+	/* Base Url for accessing Mosaico */
 	BASE_URL => "http://YOUR_MOSAICO_URL/",
 	
 	/* local file system base path to where image directories are located */
