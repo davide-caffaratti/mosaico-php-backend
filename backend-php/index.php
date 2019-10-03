@@ -4,7 +4,7 @@
 
 /* configuration */
 
-const IMAGE_URL = 1;
+const SERVE_URL = 1;
 const BASE_URL = 2;
 const BASE_DIR = 3;
 const UPLOADS_URL = 4;
