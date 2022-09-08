@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 /* note that all _URL and _DIR configurations below must end with a forward slash (/) */
 
