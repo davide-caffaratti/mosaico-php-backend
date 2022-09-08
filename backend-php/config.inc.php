@@ -5,19 +5,19 @@
 $config = array(
 
     /* Url for image serving in final download */
-    'SERVE_URL' => 'http://localhost/newsletter/media/',
+    'SERVE_URL' => 'http://localhost/mosaico/media/',
 
     /* Base path for image serving in final download */
-    'SERVE_PATH' => $_SERVER['DOCUMENT_ROOT'] . '/newsletter/media/',
+    'SERVE_PATH' => $_SERVER['DOCUMENT_ROOT'] . '/mosaico/media/',
 
     /* Local file system path to the static images folder (relative to BASE_PATH) */
     'STATIC_DIR' => 'static/',
 
     /* Base Url for accessing Mosaico */
-    'BASE_URL' => 'http://localhost/newsletter/',
+    'BASE_URL' => 'http://localhost/mosaico/',
 
     /* Local file system base path to where image directories are located */
-    'BASE_PATH' => $_SERVER['DOCUMENT_ROOT'] . '/newsletter/',
+    'BASE_PATH' => $_SERVER['DOCUMENT_ROOT'] . '/mosaico/',
 
     /* Dir name for the uploads folder (relative to BASE_URL and BASE_PATH) */
     'UPLOADS_DIR' => 'uploads/',
