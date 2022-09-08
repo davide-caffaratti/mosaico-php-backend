@@ -40,7 +40,8 @@ This is the PHP backend rewrited using various static class engine, used by the 
 /upload/index.php
 ```
 * This file is used for image uploads and retrieving of a list of uploaded images calling using the class Mosaico_Server::get('uploads')
-```
+
+```php
 <?php
 include('../backend-php/server.inc.php');
 Mosaico_Server::get('uploads');
@@ -50,7 +51,8 @@ Mosaico_Server::get('uploads');
 /img/index.php
 ```
 * This file is used for generating the placeholder images and the resizing of images using class Mosaico_Server::get('img')
-```
+
+```php
 <?php
 include('../backend-php/server.inc.php');
 Mosaico_Server::get('img');
@@ -60,7 +62,8 @@ Mosaico_Server::get('img');
 /dl/index.php
 ```
 * This file is used for downloading of the HTML emailand sending of the test email using the class Mosaico_Server::get('dl')
-```
+
+```php
 <?php
 include('../backend-php/server.inc.php');
 Mosaico_Server::get('dl');
