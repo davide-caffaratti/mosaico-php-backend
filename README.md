@@ -2,7 +2,7 @@
 
 This is a working PHP backend for Mosaico
 
-This has been forked from https://github.com/ainterpreting/mosaico-php-backend which seems to be completely dead and no-longer maintained.  
+This has been forked from https://github.com/markalston/mosaico-php-backend which seems to be no-longer maintained and has been rewrited using static php classes.
 
 It has been tested with mosaico 0.18.6 installed in /var/www/mosaico and with document root as /var/www/mosaico.  If your apache setup is different you will probably have to change the paths in config.php.
 
