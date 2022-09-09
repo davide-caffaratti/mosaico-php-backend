@@ -115,11 +115,11 @@ class Mosaico_Process_Upload_Request
                 }
             }
         }
-
-        header('Content-Type: application/json; charset=utf-8');
-        header('Connection: close');
         
         Mosaico_Server_Response_Ok::set();
+        
+        header('Content-Type: application/json; charset=utf-8');
+        header('Connection: close');
         
         echo json_encode(array('files' => $files));
     }
