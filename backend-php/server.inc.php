@@ -116,10 +116,10 @@ class Mosaico_Process_Upload_Request
             }
         }
 
-        Mosaico_Server_Response_Ok::set();
-
         header('Content-Type: application/json; charset=utf-8');
         header('Connection: close');
+        
+        Mosaico_Server_Response_Ok::set();
         
         echo json_encode(array('files' => $files));
     }
@@ -208,6 +208,7 @@ class Mosaico_Process_Img_Request
                     echo $image;
                 break;
                 case 'resize':
+                case 'cover':
                     if (filter_has_var(INPUT_GET, 'src'))
                     $file_name = $_GET['src'];
 
