@@ -37,7 +37,7 @@ This is the PHP backend rewrited using various static class engine, used by the 
 * the resizing of images
 
 ```
-/upload/index.php
+/uploads/index.php
 ```
 * This file is used for image uploads and retrieving of a list of uploaded images calling using the class Mosaico_Server::get('uploads')
 
