@@ -14,7 +14,7 @@ This install includes the directories upload, dl, and img, media (which should b
 
 ## Dependencies
 
-It is expected that you are running PHP and have Mosaico installed in the main folder.
+It is expected that you are running PHP and have a working Mosaico installation in the main folder.
 
 You also do need to have Imagemagick support enabled in your PHP configuration.
 
