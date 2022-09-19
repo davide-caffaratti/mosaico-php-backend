@@ -1,0 +1,26 @@
+<?php
+$lang = array(
+    'EDITOR_TITLE'=>'HTML Email Editor',
+    'BROWSER_INCOMPATIBLE'=>'Your browser is not compatible with the Mosaico email editor, Update it for use this interface.!',
+    'TITTLE_TOCKEN'=>'MOSAICO Responsive Email Designer',
+    'NEW_TPL_DEF_NAME'=>'New Template',
+    'ADD_TPL_NAME'=>'Template name',
+    'RENAME_TPL'=>'Rename template',
+    'DELETE_TPL'=>'Are you shure to delete this template?',
+    'BTN_OPTIONS'=>'Options',
+    'BTN_RENAME'=>'Rename',
+    'BTN_DUPLICATE'=>'Duplicate',
+    'BTN_DELETE'=>'Delete',
+    'DUPLICATE_TEMPLATE'=>'Duplicate',
+    'TABLE_FIELD_NAME'=>'Name',
+    'TABLE_FIELD_TPL'=>'Template',
+    'TABLE_FIELD_LCHANGE'=>'Last modify',
+    'USE_TPL_DESC'=>'Use this template',
+    'TITLE_CHOSE_TPL'=>'Coose the master template',
+    'NO_TPL_DB'=>'No template stored in the database. Insert new template model starting from the below templates.',
+    'NO_TPL_FOLDER'=>'No template presents in the templates dir, please, check your folder ant put, at least, one template.',
+    'RESPONSE_UPD_TPL_OK'=>'The template "%s" is correctly updated.',
+    'RESPONSE_UPD_TPL_KO'=>'The "%s" template is the same as the one present in the database.',
+    'RESPONSE_INS_TPL_OK'=>'The "%s" template is correctly inserted.',
+    'RESPONSE_AJAX_PROBLEM'=>'Unexpected problem with the Ajax server try again or send us a message.'
+);
