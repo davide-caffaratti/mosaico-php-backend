@@ -36,6 +36,11 @@ This is the modified Mosaico editor needed for use the functions for save the us
 
 
 ```
+backend-php/.htaccess
+```
+File for rewriting the url of the php-backend
+
+```
 backend-php/index.php 
 ```
 This is the PHP backend rewrited using various static class engine, used by the index.php files located in php-backend dir and handles the required functions:
@@ -46,6 +51,29 @@ This is the PHP backend rewrited using various static class engine, used by the 
 * generating the placeholder images
 * the resizing of images
 * the saving of the used template in mysql database
+
+```
+upload/thumb/ 
+```
+Folder inside the upload folder with miniature images for gallery pickup.
+
+
+```
+backend-php/lib/ 
+```
+Folder with the necessary lib for Mosaico Server.
+
+
+```
+backend-php/lib/Mosaico/ 
+```
+Folder with the classes used by Mosaico Server.
+
+
+```
+backend-php/lib/interface-lang/ 
+```
+Folder with the translation in 3 languages(Italian, English and Spanish) used by Mosaico Server and all the Server system.
 
 
 ```
