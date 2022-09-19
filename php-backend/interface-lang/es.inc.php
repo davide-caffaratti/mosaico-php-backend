@@ -1,0 +1,26 @@
+<?php
+$lang = array(
+    'EDITOR_TITLE'=>'Editor de correo electrónico HTML',
+    'BROWSER_INCOMPATIBLE'=>'Su navegador no es compatible con el editor de correo electrónico de Mosaico, actualícelo para usar esta interfaz.',
+    'TITTLE_TOCKEN'=>'MOSAICO Responsive Email Designer',
+    'NEW_TPL_DEF_NAME'=>'Nuevo plantilla',
+    'ADD_TPL_NAME'=>'Nombre del plantilla',
+    'RENAME_TPL'=>'Renombrar plantilla',
+    'DELETE_TPL'=>'¿Está seguro de que desea eliminar esta plantilla?',
+    'BTN_OPTIONS'=>'Opciones',
+    'BTN_RENAME'=>'Renombra',
+    'BTN_DUPLICATE'=>'Duplica',
+    'BTN_DELETE'=>'Cancela',
+    'DUPLICATE_TEMPLATE'=>'Duplicado',
+    'TABLE_FIELD_NAME'=>'Nombre',
+    'TABLE_FIELD_TPL'=>'Plantilla',
+    'TABLE_FIELD_LCHANGE'=>'última edición',
+    'USE_TPL_DESC'=>'Usa esta plantilla',
+    'TITLE_CHOSE_TPL'=>'Elija la plantilla principal',
+    'NO_TPL_DB'=>'No hay plantilla almacenada en la base de datos. Inserte un nuevo modelo de plantilla a partir de las siguientes plantillas.',
+    'NO_TPL_FOLDER'=>'No hay ninguna plantilla presente en el directorio de plantillas, por favor, revise su carpeta y coloque, al menos, una plantilla.',
+    'RESPONSE_UPD_TPL_OK'=>'La plantilla "%s" se ha actualizado correctamente.',
+    'RESPONSE_UPD_TPL_KO'=>'La plantilla "%s" es la misma presente en la base de datos.',
+    'RESPONSE_INS_TPL_OK'=>'La plantilla "%s" se ha insertado correctamente.',
+    'RESPONSE_AJAX_PROBLEM'=>'Problema inesperado con el servidor Ajax intente nuevamente o envíenos un mensaje.'
+);
