@@ -35,13 +35,16 @@ This is the PHP backend rewrited using various static class engine, used by the 
 
 ```
 backend-php/index.php 
+```
 This is the file where user can choose templates from master templates or from the listed model saved in the database.
 The user can, also, update/rename/delete the model saved in the database
+
 
 ```
 backend-php/lib/config.inc.php 
 ```
 In this file are a few variables that you can adjust if necessary. Please check this file and make sure all the paths are correct for your Mosaico installation, and that PHP can write files to those paths. If they are wrong or PHP cannot write files to those paths, your image uploads will not work.
+
 
 ```
 /media/static/
