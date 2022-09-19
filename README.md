@@ -20,6 +20,21 @@ You also do need to have Imagemagick support enabled in your PHP configuration.
 
 ## New folders and files
 
+
+
+```
+index.php 
+```
+This is the file where user can choose templates from master templates or from the listed model saved in the database.
+The user can, also, update/rename/delete the model saved in the database
+
+
+```
+editor.php 
+```
+This is the modified Mosaico editor needed for use the functions for save the used template in a mysql database
+
+
 ```
 backend-php/index.php 
 ```
@@ -31,13 +46,6 @@ This is the PHP backend rewrited using various static class engine, used by the 
 * generating the placeholder images
 * the resizing of images
 * the saving of the used template in mysql database
-
-
-```
-backend-php/index.php 
-```
-This is the file where user can choose templates from master templates or from the listed model saved in the database.
-The user can, also, update/rename/delete the model saved in the database
 
 
 ```
