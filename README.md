@@ -52,11 +52,6 @@ This is the PHP backend rewrited using various static class engine, used by the 
 * the resizing of images
 * the saving of the used template in mysql database
 
-```
-upload/thumb/ 
-```
-Folder inside the upload folder with miniature images for gallery pickup.
-
 
 ```
 backend-php/lib/ 
@@ -86,6 +81,11 @@ In this file are a few variables that you can adjust if necessary. Please check 
 /media/static/
 ```
 Place where the static images are created
+
+```
+upload/thumb/ 
+```
+Folder inside the upload folder with miniature images for gallery pickup.
 
 
 The PHP backend also generates static resized images when downloading the HTML email or sending the test email.
