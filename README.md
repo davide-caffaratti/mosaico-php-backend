@@ -1,6 +1,6 @@
 # Mosaico PHP Backend
 
-This is a working PHP backend for Mosaico
+This is a working PHP backend for Mosaico that can save the used temmplates in a mysql database.
 
 This has been forked from https://github.com/markalston/mosaico-php-backend which seems to be no-longer maintained and has been rewrited using static php classes.
 
@@ -10,7 +10,6 @@ Mosaico can be found at https://github.com/voidlabs/mosaico
 
 First, install and set up Mosaico.  Then install these files on top of the Mosaico installation.
 
-This install includes the directories upload, dl, and img, media (which should be copied into your main mosaico directory) 
 
 ## Dependencies
 
@@ -19,8 +18,6 @@ It is expected that you are running PHP and have a working Mosaico installation 
 You also do need to have Imagemagick support enabled in your PHP configuration.
 
 ## New folders and files
-
-
 
 ```
 index.php 
