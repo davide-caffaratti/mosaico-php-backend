@@ -214,10 +214,9 @@ $(function() {
     * Add Send newsletter function
      */
     function addCustomButton(server) {
-        var msgTplURL = server + 'send/';
+        var msgTplURL = '#';//server + 'send/';
         if ($('#page .rightButtons').is(':visible')) {
-            alert('Send email');
-            //$("#page .rightButtons").append('<a href="' + msgTplURL + '" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" title="Invia ora la newsletter" role="button"><span class="ui-button-icon-primary ui-icon fa fa-fw fa-envelope"></span><span class="ui-button-text">Send email</span></a>');
+            $("#page .rightButtons").append('<a href="' + msgTplURL + '" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" title="Send email" role="button"><span class="ui-button-icon-primary ui-icon fa fa-fw fa-envelope"></span><span class="ui-button-text">Send email</span></a>');
         } 
         else {
             console.log('timeout 50');
