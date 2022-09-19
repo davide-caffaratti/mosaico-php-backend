@@ -1,0 +1,26 @@
+<?php
+$lang = array(
+    'EDITOR_TITLE'=>'Editor di email in HTML',
+    'BROWSER_INCOMPATIBLE'=>'Il tuo browser non è con l&prime;editor di email Mosaico, aggiornalo per poter usare questa interfaccia.!',
+    'TITTLE_TOCKEN'=>'MOSAICO Disegno di Email Responsive',
+    'NEW_TPL_DEF_NAME'=>'Nuovo modello',
+    'ADD_TPL_NAME'=>'Nome del modello',
+    'RENAME_TPL'=>'Rinomina modello',
+    'DELETE_TPL'=>'Sei sicuro di voler eliminare questo modello?',
+    'BTN_OPTIONS'=>'Opzioni',
+    'BTN_RENAME'=>'Rinomina',
+    'BTN_DUPLICATE'=>'Dupplica',
+    'BTN_DELETE'=>'Cancella',
+    'DUPLICATE_TEMPLATE'=>'Dupplicato',
+    'TABLE_FIELD_NAME'=>'Nome',
+    'TABLE_FIELD_TPL'=>'Modello',
+    'TABLE_FIELD_LCHANGE'=>'Ultima modifica',
+    'TITLE_CHOSE_TPL'=>'Scegli il modello principale',
+    'USE_TPL_DESC'=>'Usa questo modello',
+    'NO_TPL_DB'=>'No template stored in the database. Insert new template model starting from the below templates.',
+    'NO_TPL_FOLDER'=>'Nessun modello memorizzato nel database. Inserisci un nuovo modello di modello partendo dai modelli sottostanti.',
+    'RESPONSE_UPD_TPL_OK'=>'Il modello "%s" è stato correttamente aggiornato.',
+    'RESPONSE_UPD_TPL_KO'=>'Il modello "%s" template è uguale a quello presente nel database.',
+    'RESPONSE_INS_TPL_OK'=>'Il modello "%s" è stato correttamente inserito.',
+    'RESPONSE_AJAX_PROBLEM'=>'Errore inaspettato con il server Ajax. Prova di nuovo od inviaci un messaggio.'
+);
