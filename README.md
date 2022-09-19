@@ -21,53 +21,27 @@ You also do need to have Imagemagick support enabled in your PHP configuration.
 ## New folders and files
 
 ```
-backend-php/config.inc.php 
+backend-php/index.php 
 ```
-In this file are a few variables that you can adjust if necessary. Please check this file and make sure all the paths are correct for your Mosaico installation, and that PHP can write files to those paths. If they are wrong or PHP cannot write files to those paths, your image uploads will not work.
-
-```
-backend-php/server.inc.php  
-```
-This is the PHP backend rewrited using various static class engine, used by the index.php files located in upload dir, img dir and dl dir, that handles the required functions:
+This is the PHP backend rewrited using various static class engine, used by the index.php files located in php-backend dir and handles the required functions:
 * image uploads
 * retrieving of a list of uploaded images
 * downloading of the HTML email
 * sending of the test email
 * generating the placeholder images
 * the resizing of images
+* the saving of the used template in mysql database
+
 
 ```
-/uploads/index.php
-```
-* This file is used for image uploads and retrieving of a list of uploaded images calling using the class Mosaico_Server::get('uploads')
-
-```php
-<?php
-include('../backend-php/server.inc.php');
-Mosaico_Server::get('uploads');
-```
+backend-php/index.php 
+This is the file where user can choose templates from master templates or from the listed model saved in the database.
+The user can, also, update/rename/delete the model saved in the database
 
 ```
-/img/index.php
+backend-php/lib/config.inc.php 
 ```
-* This file is used for generating the placeholder images and the resizing of images using class Mosaico_Server::get('img')
-
-```php
-<?php
-include('../backend-php/server.inc.php');
-Mosaico_Server::get('img');
-```
-
-```
-/dl/index.php
-```
-* This file is used for downloading of the HTML emailand sending of the test email using the class Mosaico_Server::get('dl')
-
-```php
-<?php
-include('../backend-php/server.inc.php');
-Mosaico_Server::get('dl');
-```
+In this file are a few variables that you can adjust if necessary. Please check this file and make sure all the paths are correct for your Mosaico installation, and that PHP can write files to those paths. If they are wrong or PHP cannot write files to those paths, your image uploads will not work.
 
 ```
 /media/static/
