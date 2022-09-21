@@ -1,10 +1,10 @@
 # Mosaico PHP Backend
 
-This is a working PHP backend for Mosaico that can save the used temmplates in a mysql database.
+This is a working PHP backend for Mosaico that can save the used templates in a mysql database.
 
-This has been forked from https://github.com/markalston/mosaico-php-backend which seems to be no-longer maintained and has been rewrited using static php classes.
+This has been forked from https://github.com/markalston/mosaico-php-backend which seems to be no-longer maintained and has been rewrited using static php classes with autoloader.
 
-It has been tested with mosaico 0.18.6 installed in /var/www/mosaico and with document root as /var/www/mosaico.  If your apache setup is different you will probably have to change the paths in config.php.
+It has been tested with mosaico 0.18.6 installed in /var/www/newsletter/ and with document root as /var/www/newsletter/ and the url app http://localhost/newsletter/ in my testing local server. If your apache setup is different you will probably have to change the urls and the paths in config.php.
 
 Mosaico can be found at https://github.com/voidlabs/mosaico
 
