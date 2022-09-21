@@ -18,7 +18,7 @@ It is expected that you are running PHP and have a working Mosaico installation 
 You also do need to have Imagemagick support enabled in your PHP configuration.
 
 
-![2022-09-19_17-57](https://user-images.githubusercontent.com/82267325/191061072-acc78c5c-d273-4114-99f3-12c938da3c30.png)
+![2022-09-21_13-29](https://user-images.githubusercontent.com/82267325/191492919-6f32580b-f8d0-4b81-9bfd-41413b91f009.png)
 
 
 ## New folders and files
