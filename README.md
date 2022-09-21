@@ -18,14 +18,11 @@ It is expected that you are running PHP and have a working Mosaico installation 
 You also do need to have Imagemagick support enabled in your PHP configuration.
 
 
-- ![2022-09-21_13-29](https://user-images.githubusercontent.com/82267325/191492919-6f32580b-f8d0-4b81-9bfd-41413b91f009.png)
-The index.php page
+![The index.php page](https://user-images.githubusercontent.com/82267325/191492919-6f32580b-f8d0-4b81-9bfd-41413b91f009.png)
 
-- ![Screenshot 2022-09-21 at 23-56-11 HTML Email Editor](https://user-images.githubusercontent.com/82267325/191617954-4fb68352-3c72-43f7-bd93-4ea829caca39.png)
-The editor with the send email button
+- ![The editor with the send email button](https://user-images.githubusercontent.com/82267325/191617954-4fb68352-3c72-43f7-bd93-4ea829caca39.png)
 
-- ![Screenshot 2022-09-21 at 23-57-00 HTML Email Editor-Preview](https://user-images.githubusercontent.com/82267325/191617998-22cab50a-638e-4db3-b7c9-dd286074828c.png)
-The Preview for send Email
+- ![The Preview for send Email](https://user-images.githubusercontent.com/82267325/191617998-22cab50a-638e-4db3-b7c9-dd286074828c.png)
 
 
 ## New folders and files
