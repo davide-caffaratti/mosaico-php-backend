@@ -23,25 +23,25 @@ You also do need to have Imagemagick support enabled in your PHP configuration.
 ## New folders and files
 
 ```
-index.php 
+/index.php 
 ```
 This is the file where user can choose templates from master templates or from the listed model saved in the database.
 The user can, also, update/rename/delete the model saved in the database
 
 
 ```
-editor.php 
+/editor.php 
 ```
 This is the modified Mosaico editor needed for use the functions for save the used template in a mysql database
 
 
 ```
-backend-php/.htaccess
+/backend-php/.htaccess
 ```
 File for rewriting the url of the php-backend
 
 ```
-backend-php/index.php 
+/backend-php/index.php 
 ```
 This is the PHP backend rewrited using various static class engine, used by the index.php files located in php-backend dir and handles the required functions:
 * Uploads images
@@ -56,27 +56,45 @@ This is the PHP backend rewrited using various static class engine, used by the 
 
 
 ```
-backend-php/lib/ 
+/backend-php/lib/ 
 ```
 Folder with the necessary lib for Mosaico Server.
 
 
 ```
-backend-php/lib/Mosaico/ 
+/backend-php/lib/Mosaico/ 
 ```
 Folder with the classes used by Mosaico Server.
 
 
 ```
-backend-php/lib/interface-lang/ 
+/backend-php/lib/interface-lang/ 
 ```
 Folder with the translation in 3 languages(Italian, English and Spanish) used by Mosaico Server and all the Server system.
 
 
 ```
-backend-php/lib/config.inc.php 
+/backend-php/lib/config.inc.php 
 ```
 In this file are a few variables that you can adjust if necessary. Please check this file and make sure all the paths are correct for your Mosaico installation, and that PHP can write files to those paths. If they are wrong or PHP cannot write files to those paths, your image uploads will not work.
+
+
+```
+/backend-php/lib/autoload.inc.php 
+```
+Simply autoloader class.
+
+
+```
+/backend-php/lib/Db.inc.php 
+```
+Class for manage the Mysql functions.
+
+
+```
+/backend-php/lib/server.inc.php 
+```
+Main class for the backend server.
 
 
 ```
@@ -85,7 +103,7 @@ In this file are a few variables that you can adjust if necessary. Please check 
 Place where the static images are created
 
 ```
-upload/thumb/ 
+/upload/thumb/ 
 ```
 Folder inside the upload folder with miniature images for gallery pickup.
 
