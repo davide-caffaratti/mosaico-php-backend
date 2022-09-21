@@ -47,7 +47,7 @@ This is the PHP backend rewrited using various static class engine, used by the 
 * Uploads images
 * Retrieving of a list of uploaded images
 * Downloading of the HTML email
-* Sending of the test email
+* Sending the test email
 * Generating the placeholder images
 * Resizing of images
 * Saving of the used template in mysql database
