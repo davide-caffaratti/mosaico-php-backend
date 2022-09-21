@@ -76,7 +76,7 @@ Folder with the translation in 3 languages(Italian, English and Spanish) used by
 ```
 /backend-php/lib/config.inc.php 
 ```
-In this file are a few variables that you can adjust if necessary. Please check this file and make sure all the paths are correct for your Mosaico installation, and that PHP can write files to those paths. If they are wrong or PHP cannot write files to those paths, your image uploads will not work.
+In this file are a few variables that you need to adjust. Please check this file and make sure all the paths are correct for your Mosaico installation, and that PHP can write files to those paths. If they are wrong or PHP cannot write files to those paths, your image uploads will not work.
 
 
 ```
