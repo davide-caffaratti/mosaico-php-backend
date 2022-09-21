@@ -18,19 +18,6 @@ It is expected that you are running PHP and have a working Mosaico installation 
 You also do need to have Imagemagick support enabled in your PHP configuration.
 
 
-## Backend images
-
-
-| The index.php page with the model getting from mysql database  |
-| ------------- |
-| ![The index.php page](https://user-images.githubusercontent.com/82267325/191492919-6f32580b-f8d0-4b81-9bfd-41413b91f009.png) |
-
-| The editor with the send email button  | The Email preview with link to the send email backoffice |
-| ------------- | ------------- |
-| ![Screenshot 2022-09-21 at 23-56-11 HTML Email Editor](https://user-images.githubusercontent.com/82267325/191620750-91e997c0-67c6-4b01-9a02-37ce0bd404f7.png) | ![Screenshot 2022-09-21 at 23-57-00 HTML Email Editor-Preview](https://user-images.githubusercontent.com/82267325/191620520-8fdecba9-5221-4623-a95f-2b3f187e3832.png) | 
-
-
-
 ## New folders and files
 
 ```
@@ -104,3 +91,21 @@ The PHP backend also generates static resized images when downloading the HTML e
 ## Modified files
 
 if no need to use the save templates function editor.html no longer needs to be modified from the original mosaico one. 
+
+
+## Backend images
+
+
+
+| The index.php page with the model getting from mysql database  |
+| ------------- |
+| ![The index.php page](https://user-images.githubusercontent.com/82267325/191492919-6f32580b-f8d0-4b81-9bfd-41413b91f009.png) |
+
+
+
+| The editor with the send email button  | The Email preview with link to the send email backoffice |
+| ------------- | ------------- |
+| ![Screenshot 2022-09-21 at 23-56-11 HTML Email Editor](https://user-images.githubusercontent.com/82267325/191620750-91e997c0-67c6-4b01-9a02-37ce0bd404f7.png) | ![Screenshot 2022-09-21 at 23-57-00 HTML Email Editor-Preview](https://user-images.githubusercontent.com/82267325/191620520-8fdecba9-5221-4623-a95f-2b3f187e3832.png) | 
+
+
+
