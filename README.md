@@ -20,9 +20,12 @@ You also do need to have Imagemagick support enabled in your PHP configuration.
 
 ![The index.php page](https://user-images.githubusercontent.com/82267325/191492919-6f32580b-f8d0-4b81-9bfd-41413b91f009.png)
 
-- ![The editor with the send email button](https://user-images.githubusercontent.com/82267325/191617954-4fb68352-3c72-43f7-bd93-4ea829caca39.png)
+| The editor with the send email button  | The Preview for send Email |
+| ------------- | ------------- |
+| ![The editor with the send email button](https://user-images.githubusercontent.com/82267325/191617954-4fb68352-3c72-43f7-bd93-4ea829caca39.png)  | ![The Preview for send Email](https://user-images.githubusercontent.com/82267325/191617998-22cab50a-638e-4db3-b7c9-dd286074828c.png)  |
 
-- ![The Preview for send Email](https://user-images.githubusercontent.com/82267325/191617998-22cab50a-638e-4db3-b7c9-dd286074828c.png)
+
+
 
 
 ## New folders and files
