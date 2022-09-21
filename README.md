@@ -18,6 +18,8 @@ It is expected that you are running PHP and have a working Mosaico installation 
 You also do need to have Imagemagick support enabled in your PHP configuration.
 
 
+## Backend images
+
 
 | The index.php page with the model getting from mysql database  |
 | ------------- |
