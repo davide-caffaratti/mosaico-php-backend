@@ -25,8 +25,7 @@ You also do need to have Imagemagick support enabled in your PHP configuration.
 
 | The editor with the send email button  | The Email preview with link to the send email backoffice |
 | ------------- | ------------- |
-| ![Screenshot 2022-09-21 at 23-56-11 HTML Email Editor](https://user-images.githubusercontent.com/82267325/191620750-91e997c0-67c6-4b01-9a02-37ce0bd404f7.png) |
-![Screenshot 2022-09-21 at 23-57-00 HTML Email Editor-Preview](https://user-images.githubusercontent.com/82267325/191620520-8fdecba9-5221-4623-a95f-2b3f187e3832.png) | 
+| ![Screenshot 2022-09-21 at 23-56-11 HTML Email Editor](https://user-images.githubusercontent.com/82267325/191620750-91e997c0-67c6-4b01-9a02-37ce0bd404f7.png) | ![Screenshot 2022-09-21 at 23-57-00 HTML Email Editor-Preview](https://user-images.githubusercontent.com/82267325/191620520-8fdecba9-5221-4623-a95f-2b3f187e3832.png) | 
 
 
 
