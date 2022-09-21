@@ -43,26 +43,26 @@ a{
 </style>
 <script type="text/javascript">
 const server = '<?php echo $config['PHP_SERVER_URL'];?>tpl/';
- $(document).ready(function(){
+$(document).ready(function(){
 
-        // New Template
-        $('.new-tpl').on('click',function(){
-          var template = $(this).data('template');
-          var basename = $(this).data('basename');
-          template_string = (template == 'undefined') ? '' : '&template='+template;
-          
-          let name = prompt('<?php echo $lang['ADD_TPL_NAME'];?>', '');
-          if (name != null) { 
-              name = encodeURI(name);
-              document.location = '<?php echo $config['BASE_URL'];?>editor.php?name='+name+template_string;
-          }
-        });
+    // New Template
+    $('.new-tpl').on('click',function(){      
+        let name = prompt('<?php echo $lang['ADD_TPL_NAME'];?>', '');
+        if (name != null) { 
 
-        // Rename Template
-        $('body').on('click','.rename',function(){
-          var data_hash = $(this).data('hash');
-          var rename = prompt('<?php echo $lang['RENAME_TPL'];?>', '');
-          if (rename != null) {
+            var template = $(this).data('template');
+            var basename = $(this).data('basename');
+            var hash = '<?php echo uniqid('', true);?>';
+            name = encodeURI(name);
+            document.location = '<?php echo $config['BASE_URL'];?>editor.php?template=' + template + '&name=' + name + '#' + hash;
+        }
+    });
+
+    // Rename Template
+    $('body').on('click','.rename',function(){
+        var data_hash = $(this).data('hash');
+        var rename = prompt('<?php echo $lang['RENAME_TPL'];?>', '');
+        if (rename != null) {
             $.ajax({
                 url:server, 
                 type:'post',
@@ -79,12 +79,12 @@ const server = '<?php echo $config['PHP_SERVER_URL'];?>tpl/';
                 console.log('Ajax error renamig template');
             });
           }
-        });
+    });
 
-        // Delete Template
-        $('body').on('click','.delete',function(){
-          var data_hash = $(this).data('hash');
-          if (confirm('<?php echo $lang['DELETE_TPL'];?>')) {
+    // Delete Template
+    $('body').on('click','.delete',function(){
+        var data_hash = $(this).data('hash');
+        if (confirm('<?php echo $lang['DELETE_TPL'];?>')) {
             $.ajax({
                 url:server, 
                 type:'post',
@@ -100,41 +100,34 @@ const server = '<?php echo $config['PHP_SERVER_URL'];?>tpl/';
             }).fail(function(){
                 console.log('Ajax error deleting template');
             });
-          }
-        });
-
-        // Duplicate Template
-        $('body').on('click','.duplicate',function(){
-          var data_hash = $(this).data('hash');
-            $.ajax({
-                url:server, 
-                type:'post',
-                data:{action:'tpl-duplicate', hash:data_hash},
-                success:function(){
-                  location.reload();
-                },
-                statusCode: {
-                    404: function() {
-                        alert('The template to duplicate is not valid!!');
-                    }
-                },
-                error:function(){
-                    console.log('Ajax error deleting template');
-                }
-            }).fail(function(){
-                console.log('Ajax error deleting template');
-            });
-        });
-
-
+        }
     });
 
+    // Duplicate Template
+    $('body').on('click','.duplicate',function(){
+      var data_hash = $(this).data('hash');
+        $.ajax({
+            url:server, 
+            type:'post',
+            data:{action:'tpl-duplicate', hash:data_hash},
+            success:function(){
+              location.reload();
+            },
+            statusCode: {
+                404: function() {
+                    alert('The template to duplicate is not valid!!');
+                }
+            },
+            error:function(){
+                console.log('Ajax error deleting template');
+            }
+        }).fail(function(){
+            console.log('Ajax error deleting template');
+        });
+    });
 
-    </script>
-    <style>
-
-</style>
-
+});
+</script>
 
 </head>
 <body>
@@ -153,6 +146,10 @@ $sql = " SELECT `tpl_hash`, `user_id`, `tpl_basename`, `tpl_name`, `tpl_metadata
        " FROM `".$config['DB_TABLE']."` WHERE `user_id` = '".(int)$config['SESSION_USER_ID']."'";
 $html = '';
 if ($items = $db->get_results($sql, ARRAY_A)) {  
+    // Var to insert in local storage
+    $edits = '';
+    $metadataContent = '';
+    // Counter
     $i = 1;
     
     $html .= 
@@ -176,13 +173,13 @@ if ($items = $db->get_results($sql, ARRAY_A)) {
         "                   <td>".$item['tpl_basename']."</td>\n".
         "                   <td>".$item['tpl_lastchange']."</td>\n".
         "                   <td class=\"text-end\">\n".
-        "                      <button type=\"button\" class=\"btn btn-sm btn-outline-secondary dropdown-toggle\" data-bs-toggle=\"dropdown\">\n".
+        "                      <button type=\"button\" class=\"btn btn-sm  btn-secondary dropdown-toggle\" data-bs-toggle=\"dropdown\">\n".
         "                          ".$lang['BTN_OPTIONS']."\n".
         "                      </button>\n".
-        "                      <ul class=\"dropdown-menu\">\n".
+        "                      <ul class=\"dropdown-menu dropdown-menu-end\">\n".
         "                          <li><a data-hash=\"".$item['tpl_hash']."\" class=\"rename dropdown-item\" href=\"#\"><i class=\"fa fa-arrow-rotate-right me-1\"></i> ".$lang['BTN_RENAME']."</a></li>\n".
         "                          <li><a data-hash=\"".$item['tpl_hash']."\" class=\"duplicate dropdown-item\" href=\"#\"><i class=\"fa fa-copy me-1\"></i>".$lang['BTN_DUPLICATE']."</a></li>\n".
-        "                          <li class=\"dropdown-divider\"></li>\n".
+        "                          <li><hr class=\"dropdown-divider\"></li>\n".
         "                          <li><a data-hash=\"".$item['tpl_hash']."\" class=\"delete dropdown-item text-danger\" href=\"#\"><i class=\"fa fa-trash me-1\"></i>".$lang['BTN_DELETE']."</a></li>".
         "                      </ul>\n".
         "                   </td>\n".
@@ -244,6 +241,6 @@ $dirs = glob($path_tpl . '/*', GLOB_ONLYDIR);
     </div>
 
 </div>
-
+    
 </body>
 </html>
