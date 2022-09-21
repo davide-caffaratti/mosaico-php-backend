@@ -12,6 +12,7 @@ class Mosaico_ProcessTplRequest
     /**
      * handler for tpl requests
      * @access public static
+     * @return mixed php header, json strin and php header
      */
     public static function get()
     {
