@@ -93,4 +93,4 @@ The PHP backend also generates static resized images when downloading the HTML e
 
 ## Modified files
 
-Editor.html no longer needs to be modified from the original mosaico one. 
+if no need to use the save templates function editor.html no longer needs to be modified from the original mosaico one. 
