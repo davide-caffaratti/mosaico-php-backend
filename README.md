@@ -86,7 +86,7 @@ Simply autoloader class.
 
 
 ```
-/backend-php/lib/Db.inc.php 
+/backend-php/lib/db.inc.php 
 ```
 Class for manage the Mysql functions.
 
