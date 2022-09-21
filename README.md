@@ -45,14 +45,14 @@ File for rewriting the url of the php-backend
 ```
 This is the PHP backend rewrited using various static class engine, used by the index.php files located in php-backend dir and handles the required functions:
 * Uploads images
-* Retrieving of a list of uploaded images
-* Downloading of the HTML email
-* Sending the test email
+* Retrieving a list of uploaded images
+* Downloading the HTML email
+* Sending test email
 * Generating the placeholder images
-* Resizing of images
-* Saving of the used template in mysql database
-* Preview of the current email
-* Provide to send the hash of the current email to your application backoffice page
+* Resizing images
+* Saving the used template in mysql database
+* Preview the current email
+* Send the hash of the current email to your application back-office page
 
 
 ```
