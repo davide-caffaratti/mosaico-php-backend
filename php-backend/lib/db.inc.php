@@ -1,6 +1,6 @@
 <?php
 /**
-* db.inc.php (Classe per gestire interazini con mysqli del sito)
+* cat-db.inc.php (Classe per gestire interazini con mysqli del sito)
 *
 * +----------------------------------------------------------------------+
 * |                                                                      |
@@ -18,6 +18,7 @@
 define('OBJECT', 'OBJECT_DB');
 define('ARRAY_A', 'ARRAY_A');
 define('ARRAY_N', 'ARRAY_N');
+
 /**
 * @package Cat_Db
 * @desc Cat_Db DB Class 
@@ -28,7 +29,7 @@ define('ARRAY_N', 'ARRAY_N');
 * Justin Vincent (justin@visunet.ie)
 * http://php.justinvincent.com
 */
-class Db
+class Cat_Db
 {
     /**
     * @desc contiene array dati ultima query eseguita
@@ -49,6 +50,12 @@ class Db
     */
     private $last_result = null;
     /**
+    * @desc puntatore alla connessione
+    * @access private
+    * @var string $paginationTitle
+    */
+    private $paginationTitle = null;
+    /**
     * @desc Se abbiamo una transazione in corso lo segnala
     * @access private
     * @var boolean $haveTransaction
@@ -68,19 +75,17 @@ class Db
     */
     public function __construct()
     {
-        global $config;
-        
         if (!$this->dbh) {
             // eseguo la connessione e setto dbh
-            if (!$this->dbh = mysqli_connect($config['DB_HOST'], $config['DB_USER'], $config['DB_PASS'])) {
+            if (!$this->dbh = mysqli_connect(CAT_DBHOST, CAT_DBUSER, CAT_DBPASS)) {
                 trigger_error('Connessione al database non riuscita', E_USER_ERROR);
                 exit;
             }
-            if (!mysqli_select_db($this->dbh, $config['DB'])) {
-                trigger_error('Nome database *'.$config['DB'].'* incorretto !!', E_USER_ERROR);
+            if (!mysqli_select_db($this->dbh, CAT_DB)) {
+                trigger_error('Database *'.CAT_DB.'* incorretto !!', E_USER_ERROR);
                 exit;
             }
-            if ($config['DB_USE_UTF_8']) {
+            if (CAT_DB_USE_UTF_8) {
                 mysqli_set_charset($this->dbh, "utf8");
             }
         }
@@ -105,6 +110,7 @@ class Db
         $this->dbh = null;
         $this->last_result = null;
         $this->last_query = null;
+        $this->paginationTitle = null;
         $this->haveTransaction = null;
         $this->haveLook = null;
     }
@@ -117,6 +123,7 @@ class Db
     {
         $this->last_result = null;
         $this->last_query = null;
+        $this->paginationTitle = null;
         return true;
     }
     /**
@@ -159,7 +166,7 @@ class Db
 
         if ( preg_match("/^\\s*(insert|delete|update|replace|lock|unlock|truncate|optimize|drop) /i",$query) ) {
             // Take note of the insert_id
-            if ( preg_match("/^\\s*(insert|replace) /i",$query) ) {  
+            if ( preg_match("/^\\s*(insert|replace) /i",$query) ) { 
                 // Inserted id   
                 if ($insert_useLastID) {
                     $this->insert_id = mysqli_insert_id($this->dbh);
@@ -172,7 +179,7 @@ class Db
             }
             // Take note of the lock unlock
             else if ( preg_match("/^\\s*(lock|unlock) /i",$query) ) {
-                $return_val = mysqli_insert_id($this->dbh);
+                $return_val = true;
             }
             else {
             	$this->rows_affected = mysqli_affected_rows($this->dbh);
@@ -185,6 +192,8 @@ class Db
             $return_val = true;
         }
         else {
+            $i = 0;
+
             $num_rows = 0;
             while ( $row = mysqli_fetch_object($this->result) ) {
                 $this->last_result[$num_rows] = $row;
@@ -285,6 +294,64 @@ class Db
             }
         }
     }
+    /**
+    * @desc setta il result paginato e setta parametri paginazione
+    * @access public
+    * @uses Cat_Pager class
+    * @see file cat-pagination.inc.php
+    * @param string $query Query sql
+    * @param string $page_url Url della pagina
+    * @param integer $max_for_page Max risultati per pagina
+    * @param boolean $mod_rewrite Se settata a true setta i link in base al modrewrite
+    * @param integer $ofset Usato solo se stiamo usando mod rewrite nella paginazione
+    * @param string $results_type default 'ARRAY_A'
+    * @return array ('results'=>(array)actual_recordset,'pagination'=>(string)actual_pagination,'paginationFooter'=>(string)actual_pagination_footer)
+    */
+    public function get_results_pagination($query, $page_url=false, $max_for_page=20, $mod_rewrite=false, $ofset=1, $results_type='ARRAY_A')
+    {
+        // Se non abbiamo la libreria caricata la carico
+        if (!defined('CAT_PAGER')) {
+            include(INCLUDE_LIB.'cat-pagination.inc.php');
+        }
+
+        // Inizializzo classe pager
+        $pager = new Cat_Pager($max_for_page, $page_url, $mod_rewrite, $ofset);
+
+        // aggiungo query cache e found row
+        $sqlQueryCache = 'SELECT SQL_CALC_FOUND_ROWS SQL_CACHE '.substr($query, 7);
+
+        // Formo la query con il limite
+        $sql = $sqlQueryCache." LIMIT ".$pager->get_start().", ".$max_for_page;
+
+        // se dobbiamo tornare solo un risultato alla volta
+        $results = ($max_for_page == 1) ? $this->get_row($sql, $results_type) : $this->get_results($sql, $results_type);
+
+        // Se abbiamo errore ritorno false
+        if (!$results) {
+            return null;
+        }
+        // eseguo la query e conto i risultati totali
+        if (!$total_count = $this->get_var('SELECT FOUND_ROWS()')) {
+            return null;
+        }
+
+        // fluscho risultati
+        $this->flush();
+        // Setto i dati nella classe parent
+        $pager->set_pager($total_count);
+        // setto la paginazione
+        $pager->set_pageList();
+        // Prendo paginazione
+        $pagination = $pager->get_pagination();
+        // Prendo lista pagine presenti
+        $pager->get_pageList();
+        // Lista pagine
+        $page_list = $pager->get_pageList();
+        $pager->__destruct();
+
+        // ritorno array risultato paginato
+        return array('results'=>s($results),'pagination'=>$pagination,'page_list'=>$page_list,'total_count'=>$total_count);
+    }
     /**  
     * @desc Start transaction or commit or rollback
     * @access public
@@ -293,20 +360,30 @@ class Db
     */
     public function transaction($sql='START TRANSACTION') 
     {
-        // Get parameter 1.
-        if (!in_array($sql, array('START TRANSACTION', 'COMMIT', 'ROLLBACK','SET autocommit=0'))) {
-            trigger_error('Flag transaction non valida', E_USER_ERROR);
-            exit;
-        }        
-        if ($sql == 'START TRANSACTION' || 'SET autocommit=0') {
-            $this->haveTransaction = true;
-        }       
-        if ($sql == 'COMMIT' || $sql == 'ROLLBACK') {
-            $this->haveTransaction = false;
-        }
-        if (!$this->query($sql)) {
-            trigger_error('SQL ERROR in transaction '.$sql, E_USER_ERROR);
-            exit;
+        switch($sql) {
+            case 'START TRANSACTION':
+                $this->haveTransaction = true;
+                mysqli_begin_transaction($this->dbh, MYSQLI_TRANS_START_READ_WRITE);
+            break;
+            case 'SET autocommit=0':
+                $this->haveTransaction = true;
+                mysqli_autocommit($this->dbh, false);
+            break;
+            case 'SET autocommit=1':
+                $this->haveTransaction = true;
+                mysqli_autocommit($this->dbh, true);
+            break;
+            case 'COMMIT':
+                $this->haveTransaction = true;
+                mysqli_commit($this->dbh);
+            break;
+            case 'ROLLBACK':
+                $this->haveTransaction = true;
+                mysqli_rollback($this->dbh);                
+            break;
+            default:
+                trigger_error('Transaction Flag not valid!!', E_USER_ERROR);
+                exit;
         }
         return true;
     }
